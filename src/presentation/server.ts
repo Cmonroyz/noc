@@ -5,7 +5,13 @@ export class Server {
 
   public static start() {
     console.log("Server is starting...");
-    CronService.createJob();
+    CronService.createJob(
+      '*/5 * * * * *',
+      () => {
+        const date = new Date();
+        console.log('5 seg',date);
+      }
+    );
 
   }
 }
