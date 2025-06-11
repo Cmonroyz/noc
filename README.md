@@ -4,3 +4,4 @@ Aplicacion NOC ( Network Operation Center), voy a hacer esta aplicacion utilizan
 el script inicial esta copiado desde [typescript help](https://gist.github.com/Klerith/3ba17e86dc4fabd8301a59699b9ffc0b).
 
 Se va a utilizar Arquitectura limpia
+Utilizare el paquete de [cron](https://www.npmjs.com/package/cron)
