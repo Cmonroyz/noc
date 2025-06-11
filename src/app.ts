@@ -1,5 +1,10 @@
+import { Server } from "./presentation/server";
 
+//Funcion anonima auto invocada
+(async() =>{
+  main();
+})();
 
-export const name:string = "World !!";
-
-console.log(name);
+function main() {
+  Server.start();
+}
