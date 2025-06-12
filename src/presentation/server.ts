@@ -10,6 +10,10 @@ export class Server {
 
   public static start() {
     console.log("Server is starting...");
+
+    // envio de correos.
+
+
     CronService.createJob(
       '*/5 * * * * *',
       () => {
