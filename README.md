@@ -5,3 +5,9 @@ el script inicial esta copiado desde [typescript help](https://gist.github.com/K
 
 Se va a utilizar Arquitectura limpia
 Utilizare el paquete de [cron](https://www.npmjs.com/package/cron)
+
+## variables
+Las variables de entorno utilizamos el paquete [dotenv](https://www.npmjs.com/package/dotenv)
+Tambien para poder hacer validaciones del mismo utilizamos el paquete de [env-var](https://www.npmjs.com/package/env-var)
+
+se realizo el tipado de las variables en env.plugin, y puedo subir el nombre de las variables con un .env.dist o .env.template
