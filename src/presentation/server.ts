@@ -1,4 +1,6 @@
+import { envs } from '../config/plugins/env.plugins';
 import { CronService } from "./cron/cron-service";
+import { SendEmailLogs } from '../domain/use-cases/email/send-email-logs';
 import { CheckService } from "../domain/use-cases/checks/check-services";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log-repository.impl";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
@@ -7,22 +9,24 @@ import { EmailService } from "./email/email.services";
 const fileSystemLogRepository = new LogRepositoryImpl(
   new FileSystemDatasource(),
 );
+const emailService = new EmailService();
 export class Server {
 
   public static start() {
     console.log("Server is starting...");
 
-    // envio de correos.
-    const emailService = new EmailService();
-    emailService.sendEmail({
-      to: 'to_email@example.com',
-      subject: 'Logs de sistema',
-      htmlBody: `
-      <h3>Lorem ipsum</h3>
-      <p> Lorem ipsum body</p>
-      `,
-    });
+    //todo: Mandar email
+    // const emailService = new EmailService();
+    // emailService.sendEmail({
+    //   to: 'cmonroyz@emeal.nttdata.com',
+    //   subject: 'Logs de sistema',
+    //   htmlBody: `
+    //   <h3>Lorem ipsum</h3>
+    //   <p> Lorem ipsum body</p>
+    //   `,
+    // });
 
+    // Cron service.
     // CronService.createJob(
     //   '*/5 * * * * *',
     //   () => {

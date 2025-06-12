@@ -5,8 +5,8 @@ interface CheckServiceUseCase {
   execute( url:string ):Promise<boolean>;
 }
 
-type SuccesCallback = () =>void;
-type ErrorCallback = (error:string) => void;
+type SuccesCallback = (() =>void)| undefined;
+type ErrorCallback = ((error:string) => void)|undefined;
 
 export class CheckService implements CheckServiceUseCase {
   //Crear dependencias.
@@ -14,9 +14,8 @@ export class CheckService implements CheckServiceUseCase {
     private readonly logRepository: LogRepository,
     private readonly succesCallback: SuccesCallback,
     private readonly errorCallback: ErrorCallback
-  ) {
+  ) {}
 
-  }
   //servicio que revisa cualquier url.
   public async execute ( url:string):Promise<boolean>{
 
@@ -31,7 +30,8 @@ export class CheckService implements CheckServiceUseCase {
         origin: 'check-service.ts'
       });
       this.logRepository.saveLog(log);
-      this.succesCallback();
+      this.succesCallback && this.succesCallback();
+
       return true;
     } catch (error) {
       //console.log(`${error}`);
@@ -42,7 +42,7 @@ export class CheckService implements CheckServiceUseCase {
         origin:'check-service.ts'
       });
       this.logRepository.saveLog(log);
-      this.errorCallback(errorMessage);
+      this.errorCallback && this.errorCallback(errorMessage);
       return false;
     }
   }
