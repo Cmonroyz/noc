@@ -9,10 +9,16 @@ Utilizare el paquete de [cron](https://www.npmjs.com/package/cron)
 ## Instalacion
 1. clona el repositorio
 2. cambia el .env.dit a .env y configura tus variables.
-3. instala poryecto ``` npm install ```
+3. instala poryecto 
+``` npm install ```
 
 ## variables
 Las variables de entorno utilizamos el paquete [dotenv](https://www.npmjs.com/package/dotenv)
 Tambien para poder hacer validaciones del mismo utilizamos el paquete de [env-var](https://www.npmjs.com/package/env-var)
 
 se realizo el tipado de las variables en env.plugin, y puedo subir el nombre de las variables con un .env.dist o .env.template
+
+## Mail
+Utilizo el paquete de [nodemailer](https://www.npmjs.com/package/nodemailer), realizo el envio con gmail.
+para poder importar nodemailer he tenido que instalar e instalar la configuracion de typescript con 
+```npm i --save-dev @types/nodemailer```
