@@ -5,14 +5,17 @@ import { CheckService } from "../domain/use-cases/checks/check-services";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log-repository.impl";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
 import { EmailService } from "./email/email.services";
+import { MongoLogDatasource } from '../infrastructure/datasources/mongo-log.datasource';
+import { LogSeverityLevel } from '../domain/entities/log.entity';
 
-const fileSystemLogRepository = new LogRepositoryImpl(
+const logRepository = new LogRepositoryImpl(
   new FileSystemDatasource(),
+  //new MongoLogDatasource(),
 );
 const emailService = new EmailService();
 export class Server {
 
-  public static start() {
+  public static async start() {
     console.log("Server is starting...");
 
     //todo: Mandar email
@@ -26,14 +29,17 @@ export class Server {
     //   `,
     // });
 
-    // Cron service.
+    const logs = await logRepository.getLogs(LogSeverityLevel.low);
+    console.log(logs);
+
+    //todo: Cron service.
     // CronService.createJob(
     //   '*/5 * * * * *',
     //   () => {
     //     //const url = "http://localhost:3000";
     //     const url = "http://google.com";
     //     new CheckService(
-    //       fileSystemLogRepository,
+    //       logRepository,
     //       () => console.log(`${url} is ok`),
     //       (error) => console.log(error),
     //     ).execute( url );
