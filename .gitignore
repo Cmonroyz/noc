@@ -143,5 +143,5 @@ dist
 
 # Mongo
 mongo_data/
-
+postgres/
 # End of https://www.toptal.com/developers/gitignore/api/node
